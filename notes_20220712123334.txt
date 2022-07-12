@@ -1,0 +1,65 @@
+07.12 12:31 PM
+package blazedemo;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class OnlineTicket {
+
+	public static void main(String[] args) throws InterruptedException {
+		//TODO Auto-generated method stu
+		System.setProperty("webdriver.chrome.driver","E:\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver=new ChromeDriver();
+		driver.get("https://blazedemo.com/");
+		driver.findElement(By.xpath("//body/div[3]/form[1]/select[1]")).sendKeys("Boston");
+		Thread.sleep(5000);
+	    driver.findElement(By.xpath("//body/div[3]/form[1]/select[2]")).sendKeys("Rome");
+	    Thread.sleep(5000);
+	    driver.findElement(By.xpath("//body/div[3]/form[1]/div[1]/input[1]")).click();
+	    Thread.sleep(5000);
+	    driver.findElement(By.xpath("//tbody/tr[3]/td[1]/input[1]")).click();
+	    Thread.sleep(5000);
+	    driver.findElement(By.id("inputName")).sendKeys("Ashwini");
+	    driver.findElement(By.id("address")).sendKeys("567 Nagar street");
+	    driver.findElement(By.id("city")).sendKeys("Chennai");
+	    driver.findElement(By.id("state")).sendKeys("Tamilnadu");
+	    driver.findElement(By.id("zipCode")).sendKeys("603203");
+	    driver.findElement(By.id("cardType")).sendKeys("Visa");
+	    driver.findElement(By.id("creditCardNumber")).sendKeys("1234563652413698");
+	    driver.findElement(By.id("creditCardMonth")).sendKeys("20");
+	    driver.findElement(By.id("creditCardYear")).sendKeys("2025");
+	    driver.findElement(By.id("nameOnCard")).sendKeys("Ashwini");
+	    driver.findElement(By.id("rememberMe")).click();
+	    driver.findElement(By.xpath("//body/div[2]/form[1]/div[11]/div[1]/input[1]")).click();
+	    Thread.sleep(4000);
+	    boolean display=driver.findElement(By.xpath("//h1[contains(text(),'Thank you for your purchase today!')]")).isDisplayed();
+	    if(display==true)
+	    {
+	    System.out.println("The ticket is booked successfully");
+	    }
+	    else
+	    {
+	    System.out.println("The ticket is not booked successfully");
+	    }
+	    String actualtitle=driver.getTitle();
+	    System.out.println("The title is " +actualtitle);
+	    Thread.sleep(4000); 
+	    List<WebElement> frame=driver.findElements(By.tagName("a"));
+		int l=frame.size();
+		System.out.println("Total.no.frames:"+l);
+	    List<WebElement> allLinks=driver.findElements(By.tagName("a"));
+	    for(WebElement link:allLinks)
+	    {
+	    	System.out.println("The link is" +link.getText() + " - " +link.getAttribute("href"));
+	    }
+	    
+	    
+	   
+	}
+
+
+	}
